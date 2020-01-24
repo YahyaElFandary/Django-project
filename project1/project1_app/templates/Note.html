@@ -1,0 +1,9 @@
+<h1>Welcome all </h1>
+
+<h2>Welcome in notes app</h2>
+
+{# this for loop here is used to loop on all the notes that exist in dict key Notekey >>test >> Note >> models.py #}
+{% for note in Notekey %}
+  {{note}}
+  <br>
+{% endfor %}

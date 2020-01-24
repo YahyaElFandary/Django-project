@@ -6,6 +6,6 @@ urlpatterns = [
     path('', views.test, name='test'), #from view import the function called test and name it test
     path('projectapp2/', views.test2, name='test2'), #from view import the function called test2 and name it test2
 ]
-#from extra elaboration: if i left my path empty path('', views.test, name='test') then it will be returned when no path 
+#from extra elaboration: if i left my path empty path('', views.test, name='test') then it will be returned when no path
 #is called(no url is called) meaning it will return function test from views
-#when the url you are called doesnt call an exact function
+#when the url you are calling doesnt call an exact function
