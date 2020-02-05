@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+  {% load static %}
+
+{% block body %}
+
+<div class="container">
+
+  <form method="post">
+    {% csrf_token %}
+    {{form}}
+    <hr>
+    <br>
+    <button type="submit" name="button">Submit changes to Note</button>
+  </form>
+</div>
+{% endblock %}
