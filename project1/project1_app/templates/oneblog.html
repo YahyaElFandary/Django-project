@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block body %}
+
+
+    <!-- Start blog Area -->
+    <section class="blog-area section-gap">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 pb-30 header-text">
+            <h1>{{onenotekey.title}}</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> labore  et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+        <center>
+        <div class="row">
+          <div class="container">
+            <div class="mymargins">
+              <div class="single-blog col-lg-10 col-md-4">
+                  <img class="f-img img-fluid mx-auto" src="{{ onenotekey.ImageProfile.url }}"  alt="">
+                <h4>
+                  <a href="/home/{{onenotekey.slug}}">{{onenotekey.title}}</a>
+                </h4>
+                <p>
+                {{onenotekey.content}}</p>
+                <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
+                  <div>
+                    <img class="img-fluid" src="{% static "img/user.png" %}" alt="">
+                    <a href="#"><span>{{onenotekey.user.username}}</span></a>
+                  </div>
+                  <div class="meta">
+                    {{onenotekey.created|date:"j M"}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </center>
+      </div>
+    </section>
+    <!-- end blog Area -->
+
+{% endblock %}

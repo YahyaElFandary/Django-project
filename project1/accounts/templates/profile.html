@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block body %}
+
+<div class="container"  style="margin-top: 60px;">
+
+  <center>
+    <img src="{{profile.img.url}}" name="aboutme" width="200" height="140" border="0" class="img-circle">
+    <h3 class="media-heading">{{profile.user}}</h3>
+    <span><strong>Skills: </strong></span>
+        <span class="label label-warning">HTML5/CSS</span>
+        <span class="label label-info">Adobe CS 5.5</span>
+        <span class="label label-info">Microsoft Office</span>
+        <span class="label label-success">Windows XP, Vista, 7</span>
+
+    <hr>
+    <p ><strong>Bio: </strong><br>
+      {{profile.Bio}}
+    <br>
+
+    <a href="/accounts/{{profile.slug}}/edit"  class="btn btn-primary">Edit this Profile</a><br>
+    <br>
+    <a href="/accounts/{{profile.slug}}/change_pass" class="btn btn-primary">Change Password</a>
+  </center>
+</div>
+{% endblock %}

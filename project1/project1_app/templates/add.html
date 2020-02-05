@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container" style=" margin: 50px auto;">
+  <div class="mymargins">
+    <form method="post">
+      {% csrf_token %}
+      {{form}}
+      <hr>
+      <br>
+      <button type="submit" name="button">Add Note</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

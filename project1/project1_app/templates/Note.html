@@ -1,9 +1,14 @@
 <h1>Welcome all </h1>
 
 <h2>Welcome in notes app</h2>
-
+<a href="{% url 'project1_app:add_note' %}">Add New Note</a>
+<br>
+<hr>
 {# this for loop here is used to loop on all the notes that exist in dict key Notekey >>test >> Note >> models.py #}
 {% for note in Notekey %}
-  {{note}}
+{# <a href="{% url 'project1_app' slug=note.slugy %}">{{note}}</a> #}
+{# <a href="{{ instance.urlpath }}">{{note}}</a> #}
+<a href="/home/{{note.slug}}">{{note}}</a> <!--this one is the one that will make the url a dynamic url-->
+{# <a href="{% url 'project1_app:test2' %}">{{note}}</a> #}
   <br>
 {% endfor %}
