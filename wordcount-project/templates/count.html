@@ -9,11 +9,15 @@
 
 
 <h2>the count is:</h2>
-{% for word , counttotal in worddictionary  %}
+{% for word, counttotal in worddictionary  %}
+
   {{word}}
   <br>
   {{counttotal}}
 {% endfor %}
 
-
+{% for key,value in key3.items %}
+  {{key}} >> {{value}}
+{% endfor %}
+<br>
 {{key3}}
