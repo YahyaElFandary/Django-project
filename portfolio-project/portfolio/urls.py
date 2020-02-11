@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-
+from jobs import views
+#import jobs.views we can use this instead of from jobs import views .beacuase alot of apps it might be messy  
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home,name='home'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
