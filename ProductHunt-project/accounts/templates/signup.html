@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% csrf_token %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>Signup</h1>
+
+  <form action="{% url 'signup' %}" method="POST">
+    {% csrf_token %}
+    {% if error %}
+    {{error}}
+    <br>
+    <br>
+    {% endif %}
+    Username:
+    <br>
+    <input type="text" class="form-control" name="username" />
+    <label for="username">Please enter a valid username</label>
+    <br>
+    Password:
+    <br>
+    <input type="password" class="form-control" name="password1" />
+    <br>
+
+    Confirm Password:
+    <br>
+    <input type="password" class="form-control" name="password2" />
+    <label for="password2">Passwords must match</label>
+    <br>
+    <br>
+    <input type="submit" class="btn btn-primary" value="Signup!">
+  </form>
+
+  {{form|crispy}}
+  <br>
+  <br>
+
+
+{% endblock %}
