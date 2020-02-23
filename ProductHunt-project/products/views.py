@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Product
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    product=Product.objects
+    return render(request,'home.html',{'product':product})
 @login_required
 def create(request):
     if request.method=='POST':
