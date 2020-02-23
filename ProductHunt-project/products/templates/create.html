@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% csrf_token %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>Create a new Product</h1>
+
+  <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if error %}
+      {{error}}
+      <br>
+    {% endif %}
+    Title:
+    <br>
+    <input type="text" class="form-control" name="title" />
+    <label for="username">Please fill all the fields</label>
+    <br>
+    Body:
+    <br>
+    <input type="textbox" class="form-control" name="body" />
+    <br>
+    Url
+    <input type="text" class="form-control" name="url" />
+    <br>
+    Image:
+    <input type="file" class="btn" name="image" />
+    <br>
+    <br>
+    Icon:
+    <input type="file" class="btn"  name="icon" />
+    <br>
+    <br>
+    <input type="submit" class="btn btn-primary"name="" value="Add Product">
+  </form>
+
+  <br>
+  <br>
+
+
+{% endblock %}
