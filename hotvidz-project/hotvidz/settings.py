@@ -76,15 +76,11 @@ WSGI_APPLICATION = 'hotvidz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hotvidzdb',
-        'USER':'postgres',
-        'PASSWORD':'markosblack',
-        'HOST':'localhost',
-        'PORT':'5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 
 # Password validation

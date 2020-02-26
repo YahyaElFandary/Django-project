@@ -23,9 +23,15 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
+    path('dashboard',views.dashboard,name='dashboard'),
+    #AUTH
     path('signup',views.SignUp.as_view(),name='signup'),
     path('login',LoginView.as_view(),name='login'),
     path('logout',LogoutView.as_view(),name='logout'),
-
+    #HALLS
+    path('create/',views.Create.as_view(),name='Create'),
+    path('<int:pk>/',views.Detail.as_view(),name='detail'),
+    path('<int:pk>/update',views.Update.as_view(),name='update'),
+    path('<int:pk>/delete',views.Delete.as_view(),name='delete'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
