@@ -10,11 +10,7 @@ import urllib
 import requests
 from django.forms.utils import ErrorList
 
-<<<<<<< HEAD
 YOUTUBE_API_KEY = 'AImzaoSytB_hKeekKryYfHHuLHcxJkuIeX6rBF1N_CTHmcsHC2kE'
-=======
-YOUTUBE_API_KEY = 'AIzaSyB_KekKyYHHLHxJuIX6BFN_CTHmcsHC2kE'
->>>>>>> ca22fe03fed481a19c9698b3ca46290a261cbe2a
 
 def home(request):
     return render(request,'home.html')
