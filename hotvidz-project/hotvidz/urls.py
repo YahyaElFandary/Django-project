@@ -33,5 +33,9 @@ urlpatterns = [
     path('<int:pk>/',views.Detail.as_view(),name='detail'),
     path('<int:pk>/update',views.Update.as_view(),name='update'),
     path('<int:pk>/delete',views.Delete.as_view(),name='delete'),
+    #Video
+    path('<int:pk>/addvideo',views.addvideo,name='addvideo'),
+    path('video/search',views.searchVideo,name='searchvideo'),
+    path('video/<int:pk>/delete',views.DeleteVideo.as_view(),name='deletevideo'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
