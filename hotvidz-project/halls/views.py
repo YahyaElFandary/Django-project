@@ -9,12 +9,13 @@ from django.http import Http404 ,JsonResponse
 import urllib
 import requests
 from django.forms.utils import ErrorList
+from django.contrib.auth.decorators import login_required
 
 YOUTUBE_API_KEY = 'AImzaoSytB_hKeekKryYfHHuLHcxJkuIeX6rBF1N_CTHmcsHC2kE'
 
 def home(request):
     return render(request,'home.html')
-
+@login_required
 def dashboard(request):
     halls = Hall.objects.filter(user=request.user)
     return render(request,'dashboard.html',{'halls':halls})
@@ -77,7 +78,7 @@ class Create(generic.CreateView):
     def form_valid(self,form):
         form.instance.user = self.request.user
         super(Create,self).form_valid(form)
-        return redirect('home')
+        return redirect('dashboard')
 
 class Detail(generic.DetailView):
     model = Hall

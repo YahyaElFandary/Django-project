@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 
 
 
@@ -8,8 +8,8 @@
   <h1>Create Hall</h1>
   <form method="post">
     {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" name="button">Create Hall</button>
+    {{form|crispy}}
+    <button type="submit" class="btn btn-primary">Create Hall</button>
   </form>
 </div>
 
