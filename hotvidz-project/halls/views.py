@@ -10,16 +10,19 @@ import urllib
 import requests
 from django.forms.utils import ErrorList
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 YOUTUBE_API_KEY = 'AImzaoSytB_hKeekKryYfHHuLHcxJkuIeX6rBF1N_CTHmcsHC2kE'
 
 def home(request):
-    return render(request,'home.html')
+    recent_halls = Hall.objects.all().order_by('-id')[:3]
+    popular_halls = [Hall.objects.get(pk=2),Hall.objects.get(pk=3),Hall.objects.get(pk=4)]
+    return render(request,'home.html',{'recent_halls':recent_halls,'popular_halls':popular_halls})
 @login_required
 def dashboard(request):
     halls = Hall.objects.filter(user=request.user)
     return render(request,'dashboard.html',{'halls':halls})
-
+@login_required
 def addvideo(request, pk):
     form = VideoForm()
     search_form = SearchForm()
@@ -46,7 +49,7 @@ def addvideo(request, pk):
                 errors = form._errors.setdefault('url',ErrorList())
                 errors.append('Needs to be a YouTube URL')
     return render(request,'addvideo.html',{'form':form,'search_form':search_form,'hall':hall})
-
+@login_required
 def searchVideo(request):
     search_form = SearchForm(request.GET)
     if search_form.is_valid():
@@ -57,7 +60,7 @@ def searchVideo(request):
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('dashboard')
     template_name = 'signup.html'
 
     def form_valid(self,form):
@@ -68,7 +71,7 @@ class SignUp(generic.CreateView):
         return view
 
 
-class Create(generic.CreateView):
+class Create(LoginRequiredMixin, generic.CreateView):
     model = Hall
     fields = ['title']
     success_url = reverse_lazy('home')
@@ -85,23 +88,39 @@ class Detail(generic.DetailView):
     template_name = 'detail.html'
 
 
-class Update(generic.UpdateView):
+class Update(LoginRequiredMixin, generic.UpdateView):
     model = Hall
     template_name = 'update.html'
     fields = ['title']
     success_url = reverse_lazy('dashboard')
 
-class Delete(generic.DeleteView):
+    def get_object(self):
+        hall = super(Update, self).get_object()
+        if not hall.user == self.request.user :
+            raise Http404
+        return hall
+
+class Delete(LoginRequiredMixin, generic.DeleteView):
     model = Hall
     template_name = 'delete.html'
     success_url = reverse_lazy('dashboard')
 
+    def get_object(self):
+        hall = super(Delete, self).get_object()
+        if not hall.user == self.request.user :
+            raise Http404
+        return hall
 
-class DeleteVideo(generic.DeleteView):
+class DeleteVideo(LoginRequiredMixin, generic.DeleteView):
     model = Video
     template_name = 'deletevideo.html'
     success_url = reverse_lazy('dashboard')
 
+    def get_object(self):
+        video = super(DeleteVideo, self).get_object()
+        if not video.hall.user == self.request.user :
+            raise Http404
+        return video
 
 try:
     from .local_settings_views import *
