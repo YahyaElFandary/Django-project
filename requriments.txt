@@ -1,0 +1,5 @@
+certifi==2019.11.28
+django = "*"
+python_version ==3.7
+python-dateutil==3.7
+python ==3.7
