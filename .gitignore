@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#dir- to ignore
+portfolio-project/
+Producthunt-project
+project1
+wordcount-project
+
 # C extensions
 *.so
 
